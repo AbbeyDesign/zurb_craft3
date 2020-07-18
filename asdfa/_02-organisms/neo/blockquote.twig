@@ -1,0 +1,17 @@
+{% if block.level == 1 %}
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+      <div class="cell">
+      {% endif %}
+
+      {% include '_00-atoms/blockquote' with {
+        blockquote_content : block.quote,
+        blockquote_attributes: {},
+        blockquote_cite: block.quoteAuthor
+      } %}
+
+      {% if block.level == 1 %}
+      </div>
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,27 @@
+{#-
+/**
+ * Reference
+ * - https://foundation.zurb.com/sites/docs/typography-base.html
+ *
+ * *Available variables:
+ * @param list_type: {boolean} ul or ol defaults to ul
+ * @param list_attributes: {array} - class, id, etc.
+* - zurb class options: no-bullet
+ * @param list_items: {array} - items in the list
+
+ * *Code example
+ {% include '_00-atoms/list' with {
+   list_attributes: {
+    class: 'no-bullet',
+   },
+   list_items:{"one","two","three"},
+ } %}
+
+ */
+#}
+{% set list_items = [] %}
+<{{ list_type ? list_type : 'ul' }}{{ attr(list_attributes) }}>
+  {% for list_item in list_items %}
+    <li>{{ list_item }}</li>
+  {% endfor %}
+</{{ list_type ? list_type : 'ul' }}>

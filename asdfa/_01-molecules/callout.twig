@@ -1,0 +1,36 @@
+{#-
+/**
+ * Reference
+ * - https://foundation.zurb.com/sites/docs/callout.html
+
+ * Available variables:
+ * - callout_attributes: array - class, id, etc.
+ * - zurb class options: default: callout + large, small, zurb colors
+ * - callout_content - block: the content
+ * Optional variables
+ * - callout_closable: true
+ *
+ * Code example:
+ {% embed "_01-molecules/callout" with {
+         callout_closable: false,
+         callout_attributes: {
+           class: 'callout alert border-none'
+         }
+         } %}
+           {% block callout_content %}
+             <h5>This is an alert callout</h5>
+             <p>It has an easy to override visual style, and is appropriately subdued.</p>
+           {% endblock %}
+         {% endembed %}
+ */
+-#}
+
+{#- Callout Output -#}
+<div{{ attr(callout_attributes) }}{% if callout_closable %} {{ 'data-closable'|raw }} {% endif %}>
+  {% block callout_content %}{% endblock callout_content %}
+  {% if callout_closable %}
+    {% include '_00-atoms/button_close' with {
+      button_label : "Dismiss Alert"
+    } %}
+  {% endif %}
+</div>

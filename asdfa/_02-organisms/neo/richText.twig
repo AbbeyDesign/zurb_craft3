@@ -1,0 +1,23 @@
+{% if block.level == 1 %}
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+      <div class="cell">
+      {% endif %}
+
+      {% set richTextClass = "" %}
+      {%- for tag in block.frameworkTags.all() %}
+        {%- set richTextClass = richTextClass ~ ' ' ~ tag.title %}
+      {% endfor -%}
+      {% if richTextClass is defined and not null %}
+        <div class="{{ richTextClass }}">
+        {% endif %}
+        {{ block.richText }}
+        {% if richTextClass is defined and not null %}
+        </div>
+      {% endif %}
+
+      {% if block.level == 1 %}
+      </div>
+    </div>
+  </div>
+{% endif %}

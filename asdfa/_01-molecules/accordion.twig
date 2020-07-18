@@ -1,0 +1,12 @@
+<ul class="accordion" {{ 'data-accordion'|raw }}>
+  {% if accordion_array is defined %}
+  {% for item in accordion_array %}
+  <li class="{{ loop.first ? 'accordion-item is-active' : 'accordion-item' }}" {{ 'data-accordion-item'|raw }}>
+    <a href="#" class="accordion-title" aria-label="{{ item.title }}">{{ item.title }}</a>
+    <div class="accordion-content" {{ 'data-tab-content'|raw }}>
+      {{ item.content }}
+    </div>
+  </li>
+  {% endfor %}
+  {% endif %}
+</ul>

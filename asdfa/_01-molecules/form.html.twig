@@ -1,0 +1,53 @@
+<form class="" action="index.html" method="post">
+  <div class="grid-x grid-margin-x">
+
+    <label for="firstName" class="cell auto">First Name
+      {{ input('text', 'firstName', '', {
+      id: 'firstName'
+    }) }}
+    </label>
+    <label for="lastName" class="cell auto">Last Name
+      {{ input('text', 'lastName', '', {
+        id: 'lastName'
+      }) }}
+    </label>
+    <label for="company" class="cell">Company
+      {{ input('text', 'company', '', {
+        id: 'company'
+      }) }}
+    </label>
+    <label for="address" class="cell">Address
+      {{ input('text', 'address', '', {
+        id: 'address'
+      }) }}
+    </label>
+    <label for="city" class="cell medium-7">City
+      {{ input('text', 'city', '', {
+          id: 'city'
+        }) }}
+    </label>
+    <label for="state" class="cell medium-2">State
+      {{ input('text', 'state', '', {
+          id: 'state'
+        }) }}
+    </label>
+    <label for="postalCode" class="cell medium-3">Postal Code
+      {{ input('text', 'postalCode', '', {
+          id: 'postalCode',
+        }) }}
+    </label>
+    <label for="telephone" class="cell auto">Telephone
+      {{ input('text', 'telephone', '', {
+        id: 'telephone',
+      }) }}
+    </label>
+    <label for="email" class="cell auto">Email
+      {{ input('email', 'email', '', {
+        id: 'email',
+      }) }}
+    </label>
+    <label for="message" class="cell">Message
+      <textarea id="message" rows="4" cols="50"></textarea>
+    </label>
+  </div>
+</form>

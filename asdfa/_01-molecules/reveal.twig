@@ -1,0 +1,16 @@
+{#- {% embed "_01-molecules/reveal" with {
+  modul_id: 'successModul',
+  button_text: 'Click'
+} %}
+  {% block reveal_content %}
+  {% endblock reveal_content %}
+{% endembed %} -#}
+<p>
+  <button class="button" data-open="{{ modul_id }}">{{ button_text }}</button>
+</p>
+<div class="reveal" id="{{ modul_id }}" aria-labelledby="{{ modul_id }}" {{ 'data-reveal'|raw }}>
+  {% block reveal_content %}{% endblock reveal_content %}
+  {% include '_00-atoms/button_close' with {
+    button_label : "Close Modal"
+  } %}
+</div>

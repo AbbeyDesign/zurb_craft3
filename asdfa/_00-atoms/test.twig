@@ -1,0 +1,24 @@
+{# {% embed '_00-atoms/test' with {
+  grid : {
+    a: {
+      name: "div",
+      class: "grid-container"
+    },
+    b: {
+      name: "div",
+      class: "grid-x grid-margin-x"
+    },
+  }
+  } %}
+  {% block gridContent %}{% endblock %}
+{% endembed %} #}
+
+{% for item in grid %}
+  <{{ item.name }} class="{{ item.class }}">
+  {% endfor %}
+
+  {% block gridContent %}{% endblock %}
+
+  {% for item in grid %}
+  </{{ item.name }}>
+{% endfor %}

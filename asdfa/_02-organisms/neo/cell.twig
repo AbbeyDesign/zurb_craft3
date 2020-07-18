@@ -1,0 +1,16 @@
+{%- set cell = block.type -%}
+{% for tag in block.frameworkTags.all() %}
+  {% set cell = cell ~ ' ' ~ (
+    loop.first
+      ? ''
+      : ' '
+  ) ~ tag.title %}
+{% else %}
+  {% set cell = 'cell auto' %}
+{% endfor -%}
+
+<div class="{{ cell }}">
+  {%- for block in block.children.all() %}
+    {% include '_02-organisms/neo/' ~ block.type %}
+  {% endfor -%}
+</div>

@@ -1,0 +1,3 @@
+{% for block in entry.neoPageBuilder2.level(1).all() %}
+  {% include '_02-organisms/neo/' ~ block.type %}
+{% endfor %}

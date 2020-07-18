@@ -1,0 +1,34 @@
+{#-/**
+ ** Reference
+ * - https://foundation.zurb.com/sites/docs/card.html
+
+ ** Available variables:
+ * - card_attributes: array - class, id, etc.
+ * - zurb class options: default: card + custom classes like border-none
+ * - card_content - an array of different sections section, divider, null(for non-padded image)
+ *
+ ** Code example:
+ {% include '_01-molecules/card' with {
+    card_attributes: {
+      class: 'card '
+      },
+   card_sections: {
+      01: { wrap: null, content: "An image" },
+      02: { wrap: "card-section", content: "Services" },
+      03: { wrap: "card-divider", content: "Our Work" }
+   }
+ } %}
+
+*/-#}
+
+<a{{ attr(card_attributes) }}>
+  {% for section in card_sections %}
+    {% if section.wrap is defined and not null %}
+      <div class="{{ section.wrap }}">
+      {% endif %}
+      {{ section.content }}
+      {% if section.wrap is defined and not null %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</a>

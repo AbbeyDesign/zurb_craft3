@@ -1,0 +1,19 @@
+{#- bootstrap : 'row' / zurb : 'row' / bulma : 'columns' -#}
+{%- set framework = 'grid-x grid-margin-x' -%}
+{%- for tag in block.frameworkTags.all() %}
+  {%- set framework = framework ~ ' ' ~ tag.title %}
+{% endfor -%}
+
+{% set row_attributes = {
+  class: [
+    'ID' ~ block.id,
+    framework
+  ] | join(' ')
+}
+ %}
+{#- output -#}
+<div{{ attr(row_attributes) }}>
+  {%- for block in block.children.all() %}
+    {% include '_02-organisms/neo/' ~ block.type %}
+  {% endfor -%}
+</div>

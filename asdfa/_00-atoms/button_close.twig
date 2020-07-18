@@ -1,0 +1,21 @@
+{#-
+/**
+ * CLOSE BUTTON
+ * @author: ABD
+ * *Reference
+ * https://foundation.zurb.com/sites/docs/typography-base.html
+
+ * *Available variables
+ * @param button_label: {string} Close Modal
+
+ * *Code example
+  {% include '_00-atoms/button_close' with {
+  button_label : "Close Modal"
+} %}
+
+ */
+-#}
+
+<button class="close-button" aria-label="{{ button_label }}" type="button" {{ 'data-close'|raw }}>
+  <span aria-hidden="true">&times;</span>
+</button>

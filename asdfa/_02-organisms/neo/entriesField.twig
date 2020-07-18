@@ -1,0 +1,21 @@
+{% set inventory = block.inventoryField.all() %}
+{% if inventory | length %}
+  <div class="grid-container margin-vertical-2">
+    <div class="grid-x grid-margin-x medium-up-4 align-center">
+      {% for inv in inventory %}
+        <div class="cell margin-bottom-1">
+          <a href="{{ inv.url }}">
+            {% set rel = inv.previewImage.one() %}
+            {% if rel %}
+              <img src="{{ rel.url }}" alt="">
+            {% endif %}
+
+            <h3 class="h5 disp text-center">
+              <a href="{{ inv.url }}">{{ inv.title }}</a>
+            </h3>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

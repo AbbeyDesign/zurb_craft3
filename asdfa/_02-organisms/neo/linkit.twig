@@ -1,0 +1,10 @@
+{#- bootstrap : 'row' / zurb : 'row' / bulma : 'columns' -#}
+{%- set linkClass = null -%}
+{%- for tag in block.frameworkTags.all() %}
+  {%- set linkClass = linkClass ~ ' ' ~ tag.title %}
+{% endfor -%}
+
+{% set attributes = {
+  class: linkClass
+} %}
+{{ block.linkit.link(attributes) }}

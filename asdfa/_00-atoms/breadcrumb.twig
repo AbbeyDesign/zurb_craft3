@@ -1,0 +1,69 @@
+{#-
+/**
+ * BREADCRUMB
+ * @author: ABD
+ * *Reference
+ * https://foundation.zurb.com/sites/docs/typography-base.html
+
+ * *Available variables
+ * @param breadcrumbs: {array} url, name
+
+ * *Code example
+{% include '_00-atoms/breadcrumb' with {
+  breadcrumbs : {
+    home: {
+      name: "Home",
+      url: siteUrl
+    },
+    section: {
+      name: "News",
+      url: "/blog"
+    },
+    current: {
+      name: "News",
+      url: "#"
+    }
+  }
+  } %}
+
+ */
+-#}
+{% if breadcrumbs | length > 1 %}
+  {# HTML #}
+  {% if not craft.app.request.isMobileBrowser() %}
+    <nav aria-label="breadcrumb" role="navigation">
+      <ol itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList" class="breadcrumbs">
+        {% for crumb in breadcrumbs %}
+          <li itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem">
+            {%- if not loop.last -%}
+              <a itemprop="item" href="{{ crumb.url }}">
+                <span itemprop="name">{{ crumb.name }}</span></a>
+              <meta itemprop="position" content="{{ loop.index }}"/>
+            {%- else -%}
+              <span class="show-for-sr">Current:
+              </span>{{ crumb.name }}
+            {%- endif -%}
+          </li>
+        {% endfor %}
+      </ol>
+    </nav>
+  {% endif %}
+
+  {# JSON #}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{%- for crumb in breadcrumbs -%}
+          {
+            "@type": "ListItem",
+            "position": {{ loop.index }},
+            "name": "{{ crumb.name }}",
+            "item": "{{ crumb.url }}"
+          }
+          {{- loop.last ? '' : ',' }}
+        {%- endfor -%}]
+    }
+  </script>
+
+{% endif %}

@@ -1,0 +1,22 @@
+{% extends '_layouts/_wrapper' %}
+{% block main %}
+  <div class="grid-container">
+    <div class="grid-x">
+      {% block topBox %}{% endblock %}
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-x">
+      {% block leftBox %}{% endblock %}
+      {% block middleBox %}{% endblock %}
+      {% block rightBox %}{% endblock %}
+    </div>
+  </div>
+
+  <div class="grid-container">
+    <div class="grid-x">
+      {% block bottomBox %}{% endblock %}
+    </div>
+  </div>
+{% endblock %}

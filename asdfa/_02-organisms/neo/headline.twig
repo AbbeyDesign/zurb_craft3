@@ -1,0 +1,27 @@
+{% if block.level == 1 %}
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+      <div class="cell">
+      {% endif %}
+
+      {% set textClass = '' %}
+      {% for tag in block.frameworkTags.all() %}
+        {% set textClass = textClass ~ ' ' ~ (
+          loop.first
+            ? ''
+            : ' '
+        ) ~ tag.title %}
+      {% else %}
+      {% endfor -%}
+
+      {% if block.headline | length %}
+        {% for row in block.headline %}
+          <{{ row.importance }} class="{{ [row.size, row.alignment, textClass]|join(' ') }}" style="{{ block.style}}">{{ row.text }}</{{ row.importance }}>
+        {% endfor %}
+      {% endif %}
+
+      {% if block.level == 1 %}
+      </div>
+    </div>
+  </div>
+{% endif %}

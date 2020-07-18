@@ -1,0 +1,49 @@
+{% for block in entry.contentMatrix.all() %}
+
+  {% if block.type == "heading" %}
+    {% for row in block.headingText %}
+      <{{ row.importance }} class="{{ row.size }}">{{ row.text }}</{{ row.importance }}>
+    {% endfor %}
+
+  {% elseif block.type == "richText" %}
+    {{ block.text }}
+
+  {% elseif block.type == "blockquote" %}
+    {% include '_00-atoms/blockquote' with {
+      blockquote_content : block.quote,
+      blockquote_attributes: {},
+      blockquote_cite: block.author
+    } %}
+
+  {% elseif block.type == "gallery" %}
+    {% if block.galleryType == "sideshow" %}
+      {% include '_01-molecules/orbit' %}
+    {% endif %}
+
+  {% elseif block.type == "documents" %}
+    {% embed '_01-molecules/callout' with {
+      callout_closable: false,
+      callout_attributes: {
+        class: 'callout success border-none'
+      }
+    }
+      %}
+      {% block callout_content %}
+        {% set documents = block.documents.all() %}
+        {% if documents | length %}
+          <strong>{{ 'Related Document'~(documents| length > 1 ? 's' : '') }}
+          </strong>
+          <ul>
+            {% for doc in documents %}
+              <li>
+                <a href="{{ doc.url }}" title="{{ doc.title~' ('~doc.kind|upper~')'~' '~doc.size|filesize }}">{{ doc.title }}</a>{{ ' ('~doc.kind|upper~')'~' '~doc.size|filesize }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+      {% endblock callout_content %}
+    {% endembed %}
+  {% endif %}
+
+{% endfor %}

@@ -1,0 +1,27 @@
+{% if block.level == 1 %}
+  <div class="{{ 'grid-container'~ (block.fluidSection ? ' fluid') }}">
+    <div class="grid-x grid-margin-x">
+      <div class="cell">
+      {% endif %}
+
+      {% set imageClass = "" %}
+      {%- for tag in block.frameworkTags.all() %}
+        {%- set imageClass = imageClass ~ ' ' ~ tag.title %}
+      {% endfor -%}
+      {% if imageClass is defined and not null %}
+        <div class="{{ imageClass }}">
+        {% endif %}
+        {% for asset in block.image.all() %}
+          {% if asset %}
+            <img class="float-center" src="{{ asset.url }}" alt=""/>
+          {% endif %}
+        {% endfor %}
+        {% if imageClass is defined and not null %}
+        </div>
+      {% endif %}
+
+      {% if block.level == 1 %}
+      </div>
+    </div>
+  </div>
+{% endif %}

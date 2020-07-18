@@ -1,0 +1,25 @@
+{#-
+/**
+ * LABEL
+ * @author: ABD
+ * *Reference
+ * - https://foundation.zurb.com/sites/docs/label.html
+ * - default: class="label" + options: framework colors
+
+ * *Available variables
+ * @param label_attributes: {array} class, id, etc.
+ * @param label_content: {string}
+
+ * *Code example
+ {% include '_00-atoms/label' with {
+   label_attributes: {
+     class: 'label primary',
+     id: 'some id tie to referencing element for ADA'
+   },
+   label_content: 'Some Text',
+ } %}
+
+
+ */
+-#}
+<span{{ attr(label_attributes) }}>{{ label_content }}</span>

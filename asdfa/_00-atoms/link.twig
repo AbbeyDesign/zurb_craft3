@@ -1,0 +1,35 @@
+{#-
+/**
+ * LINK
+ * @author: ABD
+ * *Reference
+ * - https://foundation.zurb.com/sites/docs/typography-base.html
+
+ * *Available variables:
+ * @param link_attributes: {array} href, class, id, etc.
+ * @param link_content {string} the content of the link
+ *
+ * Available blocks using {embed} instead of {include}:
+ * @block link_content - used to replace the content of the link with an element
+ *
+ * Code example
+ {% include '_00-atoms/link' with {
+   link_content: 'Some Text',
+   link_attributes: {
+    href: 'url',
+    class: 'link',
+    id: 'messageCount',
+    title: 'title text',
+    target: '_blank',
+    rel: 'nofollow, ugc, sponsored'
+   }
+ } %}
+
+ */
+#}
+
+<a{{ attr(link_attributes) }}>
+  {% block link_content %}
+    {{ link_content }}
+  {% endblock %}
+</a>

@@ -1,0 +1,31 @@
+{#-
+/**
+ * BADGE
+ * @author: ABD
+ * *Reference
+ * https://foundation.zurb.com/sites/docs/badge.html
+ * @default: class="badge" + options; framework colors
+
+ * *Available variables
+ * @param badge_content: - {string}
+ * @param badge_attributes: {array} - class("badge" + modifiers), id(to tie this to an element using "aria-describedby"), aria etc.)
+ * @param badge_sR: hidden text for screen readers
+
+ * *Code example
+ {% include '_00-atoms/badge' with {
+   badge_content: '5',
+   badge_attributes: {
+     class: 'badge alert',
+     id: 'messageCount'
+   },
+   badge_sR: 'unread message'
+ } %}
+
+ */
+-#}
+<span{{ attr(badge_attributes) }}>
+  {{ badge_content }}
+  {% if badge_sR is defined and not null %}
+    <span class="show-for-sr">{{ badge_sR }}</span>
+  {% endif %}
+</span>

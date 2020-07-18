@@ -1,0 +1,29 @@
+{#-
+/**
+ * Reference
+ * - https://foundation.zurb.com/sites/docs/menu.html
+ *
+ * Available variables:
+ * - menu_attributes: array - class, id, etc.
+ * - zurb class options: default: menu + align-right, align-center, expanded, vertical, simple
+ * - menu_items: array of links and urls
+ *
+ * Code example
+ * GET SOME ARRAY {{ someArray }}
+ {% include '_00-atoms/menu' with {
+   menu_attributes: {
+    class: ['menu']
+   },
+   menu_items: someArray
+ } %}
+
+ */
+#}
+
+<ul{{ attr(menu_attributes) }}>
+  {% for item in menu_items %}
+    <li>
+      <a href="{{ url(item.url) }}" title="{{ item.title }}">{{ item.title }}</a>
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,43 @@
+{% set blockID = block.id %}
+
+{% css %}
+{{ '.bg'~blockID~' ' }}
+{% set bgColor = '' %}
+{% set bgImage = '' %}
+{% if block.backgroundColor | length %}
+  {% for row in block.backgroundColor %}
+    {% if row.Acolor | length %}
+      {% set bgColor = 'linear-gradient(to bottom, '~row.Acolor.getRgb()~' 0%, '~row.Acolor.getRgb()~' 37%, '~row.Bcolor.getRgb() ?? row.Acolor.getRgb()~' 100%), ' %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if block.backgroundImage | length %}
+  {% for asset in block.backgroundImage %}
+    {% if asset %}
+      {% set bgImage = 'url('~asset.url~') no-repeat center center scroll ;' %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{background-size: cover; background:
+{{ bgColor }}
+{{ bgImage }}
+{% endcss %}
+
+{% set blah %}
+{% for tag in block.frameworkTags %}
+  {{ tag.title }}
+{% endfor %}
+{% endset %}
+{% set section = {
+attributes: {
+  class: 'bg'~blockID~ ' grid-container'~blah~ (block.fluidSection ? ' fluid') ~ (block.class ? ' '~block.class : null ),
+  style: block.style ?? null,
+}
+} %}
+
+<div{{ attr(section.attributes) }}>
+  {%- for block in block.children.all() %}
+    {% include '_02-organisms/neo/' ~ block.type %}
+  {% endfor -%}
+</div>

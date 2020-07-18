@@ -1,0 +1,49 @@
+{% set fluid = null %}
+{% set contain = null %}
+{% for option in block.containerOptions %}
+  {% set fluid = option.fluidContainer
+    ? ' fluid' %}
+  {% set contain = option.containContent
+    ? true %}
+{% endfor %}
+
+{% if block.backgroundImage | length %}
+  {% for image in block.backgroundImage.all() %}
+    {% set styles = '.IDBG'~block.id~' { background-image: url('~image.url~'); background-position: center; background-repeat: no-repeat; background-size: cover; }' %}
+    {% do 
+      view.registerCss(styles) %}
+  {% endfor %}
+{% endif %}
+
+{% if block.backgroundColor | length %}
+  {% for row in block.backgroundColor %}
+    {% if row.Acolor | length %}
+      {% set styles = '.IDBG'~block.id~' { background-color: '~row.Acolor.getHex()~'; }' %}
+      {% do 
+        view.registerCss(styles) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% set framework = null %}
+{%- for tag in block.frameworkTags.all() %}
+  {%- set framework = framework ~ ' ' ~ tag.title %}
+{% endfor -%}
+
+{% set container_attributes = {
+  class: ['IDBG'~block.id, 'grid-container', fluid, framework]|join(' '),
+  style: block.style ?? null
+}
+ %}
+
+<div{{ attr(container_attributes) }}>
+  {% if contain == true %}
+    <div class="grid-container" style="{{ block.style }}">
+    {% endif %}
+    {%- for block in block.children.all() %}
+      {% include '_02-organisms/neo/' ~ block.type %}
+    {% endfor -%}
+    {% if contain == true %}
+    </div>
+  {% endif %}
+</div>

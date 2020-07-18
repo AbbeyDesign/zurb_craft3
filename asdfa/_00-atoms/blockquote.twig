@@ -1,0 +1,27 @@
+{#-
+/**
+ * BLOCKQUOTE
+ * @author: ABD
+ * *Reference
+ * https://foundation.zurb.com/sites/docs/typography-base.html
+
+ * *Available variables
+ * @param blockquote_content: {string}
+ * @param blockquote_attributes: {array} class, id, etc. optional
+ * @param blockquote_cite: {string} optional
+
+ * *Code example
+ {% include '_00-atoms/blockquote' with {
+   blockquote_content: 'Some Quote',
+   blockquote_attributes: {},
+   blockquote_cite: 'Author of Quote',
+ } %}
+
+ */
+-#}
+<blockquote{{ attr(blockquote_attributes) }}>
+  {{ blockquote_content }}
+  {% if blockquote_cite is defined and not null -%}
+    <cite>{{ blockquote_cite }}</cite>
+  {%- endif %}
+</blockquote>

@@ -1,0 +1,31 @@
+{# {% include '_globals/schemaOrganization' with {
+  type : 'Corporation',
+  name: 'companyName',
+  alternateName: 'alternateName',
+  url: 'url',
+  logo: 'logo',
+  sameAs: 'facebook',
+  telephone: 'telephone',
+  contactType: 'customer service'
+} %} #}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{{ type }}",
+    "name": "{{ name }}",
+    "alternateName": "{{ alternateName }}",
+    "url": "{{ siteUrl }}",
+    "logo": "{{ logo }}",
+    "sameAs": [
+      "https://www.facebook.com", "https://www.facebook.com", "https://www.facebook.com"
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "{{ telephone }}",
+        "contactType": "{{ contactType }}"
+      }
+    ]
+  }
+</script>
